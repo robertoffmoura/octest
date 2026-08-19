@@ -3,9 +3,11 @@ function runoctests(varargin)
         try pkg load datatypes; catch, end
         try pkg load statistics; catch, end
     end
-    root = getenv('PLOTLY_ROOT');
+    % the root whose Test_*.m files form the suite; TEST_ROOT overrides
+    % the current working directory
+    root = getenv('TEST_ROOT');
     if isempty(root)
-        root = fileparts(fileparts(mfilename('fullpath')));
+        root = pwd;
     end
     addpath(genpath(root));
 
@@ -413,6 +415,14 @@ function files = findTestFiles(folder)
             continue; % . and .. and hidden folders
         end
         if d(i).isdir
+            % private folders and vendored framework installs
+            % (identified by their OctaveTestCase.m marker) are skipped,
+            % so a framework vendored inside a consumer's repo never
+            % leaks its own tests into the consumer's suite
+            if strcmp(d(i).name, 'private') || ...
+                    exist(fullfile(folder, d(i).name, 'OctaveTestCase.m'), 'file')
+                continue;
+            end
             files = [files, findTestFiles(fullfile(folder, d(i).name))]; %#ok<AGROW>
         elseif ~isempty(regexp(d(i).name, '^Test_.*\.m$', 'once'))
             files{end+1} = fullfile(folder, d(i).name); %#ok<AGROW>
