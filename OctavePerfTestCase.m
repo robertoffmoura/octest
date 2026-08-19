@@ -1,5 +1,5 @@
-classdef PlotlyPerfTestCase < PlotlyTestCase
-    % PlotlyPerfTestCase: performance tests measured with keepMeasuring.
+classdef OctavePerfTestCase < OctaveTestCase
+    % OctavePerfTestCase: performance tests measured with keepMeasuring.
     %
     % A performance test wraps the measured code in a while loop:
     %

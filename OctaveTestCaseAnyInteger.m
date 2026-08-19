@@ -1,13 +1,13 @@
-classdef PlotlyTestCaseAnyInteger < PlotlyTestCaseAny
-    % PlotlyTestCaseAnyInteger Matcher for integer values
+classdef OctaveTestCaseAnyInteger < OctaveTestCaseAny
+    % OctaveTestCaseAnyInteger Matcher for integer values
     %
     % This class validates that a value is an integer (whole number).
     % Optionally can enforce positive integers only.
     %
-    % Do not instantiate this class directly. Use PlotlyTestCase.AnyInteger() instead.
+    % Do not instantiate this class directly. Use OctaveTestCase.AnyInteger() instead.
     %
     % Example:
-    %   expected.width = PlotlyTestCase.AnyInteger();
+    %   expected.width = OctaveTestCase.AnyInteger();
     %   testCase.verifyEqualStructs(actual, expected);
 
     properties
@@ -15,12 +15,12 @@ classdef PlotlyTestCaseAnyInteger < PlotlyTestCaseAny
     end
 
     methods
-        function obj = PlotlyTestCaseAnyInteger(positiveOnly)
+        function obj = OctaveTestCaseAnyInteger(positiveOnly)
             % Constructor
             %
             % Syntax:
-            %   obj = PlotlyTestCaseAnyInteger()
-            %   obj = PlotlyTestCaseAnyInteger(positiveOnly)
+            %   obj = OctaveTestCaseAnyInteger()
+            %   obj = OctaveTestCaseAnyInteger(positiveOnly)
             %
             % Input:
             %   positiveOnly - (Optional) If true, only accept positive integers

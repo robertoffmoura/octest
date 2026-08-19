@@ -1,4 +1,4 @@
-classdef PlotlyTestCase < handle
+classdef OctaveTestCase < handle
 
     properties
         CurrentTest = ''
@@ -63,7 +63,7 @@ classdef PlotlyTestCase < handle
                 testCase.compareHelper(actual, expected, '', varargin);
                 return;
             end
-            if isa(actual, 'PlotlyTestCaseAny') || isa(expected, 'PlotlyTestCaseAny')
+            if isa(actual, 'OctaveTestCaseAny') || isa(expected, 'OctaveTestCaseAny')
                 testCase.compareHelper(actual, expected, '', varargin);
                 return;
             end
@@ -186,7 +186,7 @@ classdef PlotlyTestCase < handle
                     [~, fBase, fExt] = fileparts(st(i).file);
                     if ~strcmp([fBase fExt], thisFile)
                         info = sprintf('\n  at %s:%d', st(i).file, st(i).line);
-                        line = PlotlyTestCase.readSourceLine(st(i).file, st(i).line);
+                        line = OctaveTestCase.readSourceLine(st(i).file, st(i).line);
                         if ~isempty(line)
                             info = sprintf('%s\n    %s', info, strtrim(line));
                         end
@@ -197,7 +197,7 @@ classdef PlotlyTestCase < handle
         end
 
         function compareHelper(testCase, actual, expected, path, extraArgs)
-            if isa(expected, 'PlotlyTestCaseAny')
+            if isa(expected, 'OctaveTestCaseAny')
                 matchResult = expected.match(actual);
                 if ~matchResult.passed
                     diagnostic = sprintf('Path to failure: %s\n%s', path, matchResult.diagnostic);
@@ -205,7 +205,7 @@ classdef PlotlyTestCase < handle
                 end
                 return;
             end
-            if isa(actual, 'PlotlyTestCaseAny')
+            if isa(actual, 'OctaveTestCaseAny')
                 matchResult = actual.match(expected);
                 if ~matchResult.passed
                     diagnostic = sprintf('Path to failure: %s\n%s', path, matchResult.diagnostic);
@@ -264,18 +264,18 @@ classdef PlotlyTestCase < handle
 
     methods (Static)
         function obj = Any()
-            obj = PlotlyTestCaseAny();
+            obj = OctaveTestCaseAny();
         end
         function obj = AnyColorString()
-            obj = PlotlyTestCaseAnyColorString();
+            obj = OctaveTestCaseAnyColorString();
         end
         function obj = AnyInteger(positiveOnly)
             if nargin < 1, positiveOnly = false; end
-            obj = PlotlyTestCaseAnyInteger(positiveOnly);
+            obj = OctaveTestCaseAnyInteger(positiveOnly);
         end
         function obj = AnyNumber(positiveOnly)
             if nargin < 1, positiveOnly = false; end
-            obj = PlotlyTestCaseAnyNumber(positiveOnly);
+            obj = OctaveTestCaseAnyNumber(positiveOnly);
         end
 
         function [absTol, msg] = parseVerifyArgs(varargin)
@@ -427,9 +427,9 @@ classdef PlotlyTestCase < handle
             elseif islogical(v) && isscalar(v)
                 if v, s = sprintf('%s%s true', dimStr, cls); else, s = sprintf('%s%s false', dimStr, cls); end
             elseif iscell(v)
-                s = PlotlyTestCase.formatCell(v);
+                s = OctaveTestCase.formatCell(v);
             elseif isstruct(v)
-                s = PlotlyTestCase.formatStruct(v);
+                s = OctaveTestCase.formatStruct(v);
             else
                 s = sprintf('%s%s', dimStr, cls);
             end

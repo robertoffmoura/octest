@@ -1,13 +1,13 @@
-classdef PlotlyTestCaseAnyNumber < PlotlyTestCaseAny
-    % PlotlyTestCaseAnyNumber Matcher for numeric values
+classdef OctaveTestCaseAnyNumber < OctaveTestCaseAny
+    % OctaveTestCaseAnyNumber Matcher for numeric values
     %
     % This class validates that a value is numeric.
     % Optionally can enforce positive numbers only.
     %
-    % Do not instantiate this class directly. Use PlotlyTestCase.AnyNumber() instead.
+    % Do not instantiate this class directly. Use OctaveTestCase.AnyNumber() instead.
     %
     % Example:
-    %   expected.ticklen = PlotlyTestCase.AnyNumber();
+    %   expected.ticklen = OctaveTestCase.AnyNumber();
     %   testCase.verifyEqualStructs(actual, expected);
 
     properties
@@ -15,12 +15,12 @@ classdef PlotlyTestCaseAnyNumber < PlotlyTestCaseAny
     end
 
     methods
-        function obj = PlotlyTestCaseAnyNumber(positiveOnly)
+        function obj = OctaveTestCaseAnyNumber(positiveOnly)
             % Constructor
             %
             % Syntax:
-            %   obj = PlotlyTestCaseAnyNumber()
-            %   obj = PlotlyTestCaseAnyNumber(positiveOnly)
+            %   obj = OctaveTestCaseAnyNumber()
+            %   obj = OctaveTestCaseAnyNumber(positiveOnly)
             %
             % Input:
             %   positiveOnly - (Optional) If true, only accept positive numbers

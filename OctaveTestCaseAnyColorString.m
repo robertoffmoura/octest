@@ -1,14 +1,14 @@
-classdef PlotlyTestCaseAnyColorString < PlotlyTestCaseAny
-    % PlotlyTestCaseAnyColorString Matcher for RGB/RGBA color strings
+classdef OctaveTestCaseAnyColorString < OctaveTestCaseAny
+    % OctaveTestCaseAnyColorString Matcher for RGB/RGBA color strings
     %
     % This class validates that a value is a color string in the format:
     %   - "rgb(r,g,b)" where r,g,b are integers from 0 to 255
     %   - "rgba(r,g,b,a)" where r,g,b are 0-255 and a is a float from 0 to 1
     %
-    % Do not instantiate this class directly. Use PlotlyTestCase.AnyColorString() instead.
+    % Do not instantiate this class directly. Use OctaveTestCase.AnyColorString() instead.
     %
     % Example:
-    %   expected.color = PlotlyTestCase.AnyColorString();
+    %   expected.color = OctaveTestCase.AnyColorString();
     %   testCase.verifyEqualStructs(actual, expected);
 
     methods

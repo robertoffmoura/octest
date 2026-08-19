@@ -1,4 +1,4 @@
-function runplotlytests(varargin)
+function runoctests(varargin)
     if exist('OCTAVE_VERSION', 'builtin')
         try pkg load datatypes; catch, end
         try pkg load statistics; catch, end
@@ -61,12 +61,12 @@ function runplotlytests(varargin)
         [~, argCount] = testParams(file, methodName);
         args0 = parseParamList(rawParams);
         if argCount == 0
-            error('runplotlytests:paramsOnNoArgMethod', ...
+            error('runoctests:paramsOnNoArgMethod', ...
                 'Test method %s/%s takes no arguments but parameters (%s) were given.', ...
                 className, methodName, rawParams);
         end
         if numel(args0) > argCount
-            error('runplotlytests:tooManyParams', ...
+            error('runoctests:tooManyParams', ...
                 'Test method %s/%s takes %d argument(s) but %d value(s) (%s) were given.', ...
                 className, methodName, argCount, numel(args0), rawParams);
         end
@@ -102,7 +102,7 @@ function runplotlytests(varargin)
         % including each parameterized case
         hasSetup = ismember('setUp', classMeths);
         hasTearDown = ismember('tearDown', classMeths);
-        isPerfClass = isa(tc, 'PlotlyPerfTestCase');
+        isPerfClass = isa(tc, 'OctavePerfTestCase');
         perfRows = {};
         nTests = 0;
         verdicts = struct('Name', {}, 'Passed', {}, 'VerificationFailures', {}, ...
@@ -365,7 +365,7 @@ function [className, methodName, rawParams, file] = parseTarget(arg, suiteFiles)
             cls = arg(1:sep-1);
             methodName = arg(sep+1:end);
             if isempty(methodName)
-                error('runplotlytests:badTarget', ...
+                error('runoctests:badTarget', ...
                     'No test method given in ''%s''', arg);
             end
             if ~isempty(strfind(methodName, '('))
@@ -390,7 +390,7 @@ function [className, methodName, rawParams, file] = parseTarget(arg, suiteFiles)
                 end
             end
             if isempty(file) && ~isempty(strfind(arg, '('))
-                error('runplotlytests:paramsNeedMethod', ...
+                error('runoctests:paramsNeedMethod', ...
                     ['Parameters in ''%s'' require a test method target like ' ...
                     'Class/method(v1,v2).'], arg);
             end
@@ -398,7 +398,7 @@ function [className, methodName, rawParams, file] = parseTarget(arg, suiteFiles)
     end
 
     if isempty(file)
-        error('runplotlytests:noTarget', ...
+        error('runoctests:noTarget', ...
             'No test class or file ''%s'' found', arg);
     end
 
@@ -437,7 +437,7 @@ function file = findTestMethodFile(suiteFiles, name)
         for i = 1:numel(found)
             [~, classes{i}] = fileparts(found{i});
         end
-        error('runplotlytests:ambiguousMethod', ...
+        error('runoctests:ambiguousMethod', ...
             'Test method ''%s'' is defined in %s; use Class/method to disambiguate.', ...
             name, strjoin(classes, ', '));
     end
@@ -467,7 +467,7 @@ function [name, raw] = stripParams(name, fullArg)
         return;
     end
     if name(end) ~= ')'
-        error('runplotlytests:badParams', ...
+        error('runoctests:badParams', ...
             'Unbalanced ''('' in ''%s''', fullArg);
     end
     raw = name(open(1)+1:end-1);
@@ -487,7 +487,7 @@ function args = parseParamList(raw)
             try
                 v = eval(tok);
             catch e
-                error('runplotlytests:badParamValue', ...
+                error('runoctests:badParamValue', ...
                     'Cannot evaluate parameter value ''%s'': %s', tok, e.message);
             end
             args(end+1) = struct('value', v, 'wildcard', false); %#ok<AGROW>

@@ -1,15 +1,15 @@
-classdef PlotlyTestCaseAny
-    % PlotlyTestCaseAny Base wildcard matcher for struct comparison
+classdef OctaveTestCaseAny
+    % OctaveTestCaseAny Base wildcard matcher for struct comparison
     %
     % This class represents a wildcard that matches any value during
-    % struct comparison in PlotlyTestCase.verifyEqualStructs.
+    % struct comparison in OctaveTestCase.verifyEqualStructs.
     %
-    % Do not instantiate this class directly. Use PlotlyTestCase.Any() instead.
+    % Do not instantiate this class directly. Use OctaveTestCase.Any() instead.
     %
     % Subclasses can override the match() method to provide custom validation.
     %
     % Example:
-    %   expected.color = PlotlyTestCase.Any();  % Ignore color field
+    %   expected.color = OctaveTestCase.Any();  % Ignore color field
     %   testCase.verifyEqualStructs(actual, expected);
 
     methods
@@ -29,7 +29,7 @@ classdef PlotlyTestCaseAny
             %     .diagnostic - String describing why match failed (empty if passed)
             %
             % Example:
-            %   matcher = PlotlyTestCase.Any();
+            %   matcher = OctaveTestCase.Any();
             %   result = matcher.match('anything');  % result.passed = true
 
             result = struct('passed', true, 'diagnostic', '');
