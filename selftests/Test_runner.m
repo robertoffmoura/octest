@@ -6,6 +6,7 @@ classdef Test_runner < OctaveTestCase
     properties
         scratchDirs = {}
         oldTestRoot = ''
+        oldCi = ''
     end
     methods
         function testTargetsAndFilters(tc)
@@ -155,6 +156,11 @@ classdef Test_runner < OctaveTestCase
             else
                 unsetenv('TEST_ROOT');
             end
+            if ~isempty(tc.oldCi)
+                setenv('CI', tc.oldCi);
+            else
+                unsetenv('CI');
+            end
             for i = 1:numel(tc.scratchDirs)
                 dir = tc.scratchDirs{i};
                 p = path();
@@ -185,8 +191,13 @@ classdef Test_runner < OctaveTestCase
         end
 
         function withRoot(tc, root)
+            % nested runner invocations must not inherit CI: the runner
+            % exits the process when CI is set and a verdict errored,
+            % which would kill the selftest run
             tc.oldTestRoot = getenv('TEST_ROOT');
             setenv('TEST_ROOT', root);
+            tc.oldCi = getenv('CI');
+            setenv('CI', '');
         end
 
         function out = runTarget(tc, target)
