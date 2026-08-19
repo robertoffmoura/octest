@@ -1,5 +1,7 @@
 # octest
 
+[![CI](https://github.com/robertoffmoura/octest/actions/workflows/ci.yml/badge.svg)](https://github.com/robertoffmoura/octest/actions/workflows/ci.yml)
+
 A lightweight test framework for Octave (and MATLAB), with parameterized tests,
 performance measurements, setUp/tearDown methods, and wildcard matchers for assertions.
 
