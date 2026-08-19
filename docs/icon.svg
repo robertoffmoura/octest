@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 150" width="150" height="150">
+  <defs>
+    <linearGradient id="gradOrange" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF7A30"/>
+      <stop offset="100%" stop-color="#D84B00"/>
+    </linearGradient>
+    <linearGradient id="gradBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1B4965"/>
+      <stop offset="100%" stop-color="#0B2545"/>
+    </linearGradient>
+    <filter id="dropShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.15"/>
+    </filter>
+  </defs>
+
+  <!-- Background rounded card -->
+  <rect width="150" height="150" rx="30" fill="#FFFFFF"/>
+  <rect width="146" height="146" x="2" y="2" rx="29" fill="none" stroke="#F1F5F9" stroke-width="2"/>
+
+  <!-- Main Outer Ring / Emblem -->
+  <g transform="translate(75, 75)" filter="url(#dropShadow)">
+    <!-- Outer orange segment -->
+    <path d="M 0 -54 A 54 54 0 1 0 54 0" fill="none" stroke="url(#gradOrange)" stroke-width="12" stroke-linecap="round"/>
+    
+    <!-- Outer blue segment -->
+    <path d="M 54 0 A 54 54 0 0 0 0 -54" fill="none" stroke="url(#gradBlue)" stroke-width="12" stroke-linecap="round"/>
+
+    <!-- Inner decorative gauge ticks -->
+    <circle cx="0" cy="0" r="38" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="2"/>
+    
+    <!-- Stopwatch / Timer Ticks -->
+    <line x1="0" y1="-32" x2="0" y2="-27" stroke="#0B2545" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="22.6" y1="-22.6" x2="19.1" y2="-19.1" stroke="#0B2545" stroke-width="2" stroke-linecap="round"/>
+    <line x1="32" y1="0" x2="27" y2="0" stroke="#0B2545" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="22.6" y1="22.6" x2="19.1" y2="19.1" stroke="#FF7A30" stroke-width="2" stroke-linecap="round"/>
+    <line x1="0" y1="32" x2="0" y2="27" stroke="#FF7A30" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="-22.6" y1="22.6" x2="-19.1" y2="19.1" stroke="#FF7A30" stroke-width="2" stroke-linecap="round"/>
+    <line x1="-32" y1="0" x2="-27" y2="0" stroke="#0B2545" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="-22.6" y1="-22.6" x2="-19.1" y2="-19.1" stroke="#0B2545" stroke-width="2" stroke-linecap="round"/>
+
+    <!-- Prominent Checkmark -->
+    <path d="M -18 2 L -5 16 L 24 -15" fill="none" stroke="url(#gradOrange)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M -18 2 L -5 16 L 24 -15" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <!-- Small Stopwatch Button Accent on top-right -->
+    <circle cx="28" cy="-28" r="3.5" fill="#FF7A30"/>
+  </g>
+</svg>
