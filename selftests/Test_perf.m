@@ -18,16 +18,15 @@ classdef Test_perf < OctavePerfTestCase
         end
 
         function testNoisyReachesCap(tc)
-            % bimodal timing keeps the margin far above 5%: sampling
-            % must run until the MaxSamples cap
+            % alternating an instant iteration with a 30 ms pause keeps
+            % the relative margin far above 5% on any machine, so
+            % sampling must run until the MaxSamples cap
             tc.injectNoise = true;
             startRuns = tc.nRuns;
             while tc.keepMeasuring
                 tc.nRuns = tc.nRuns + 1;
                 if tc.injectNoise && mod(tc.nRuns, 2) == 0
-                    pause(0.05);
-                else
-                    sqrt(1:1e7);
+                    pause(0.03);
                 end
             end
             tc.verifyEqual(tc.p_nSamples, tc.MaxSamples);

@@ -16,6 +16,6 @@ jobs:
           sudo apt-get install -y octave octave-statistics xvfb
 
       - name: Run selftests
-        run: xvfb-run -a octave --no-gui --eval "pkg load statistics; runoctests();"
+        run: xvfb-run -a octave --no-gui --eval "warning('off', 'Octave:shadowed-function'); pkg load statistics; runoctests();"
         env:
           CI: 'true'
